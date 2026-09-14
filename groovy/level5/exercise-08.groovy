@@ -1,12 +1,6 @@
 boolean isSuccessful(int statusCode) {
-
-    if (statusCode >= 200 && statusCode <= 299) {
-        return true
-    } else {
-        return false
-    }
+    statusCode >= 200 && statusCode <= 299
 }
-
 
 String classifyResponseTime(long milliseconds) {
 
@@ -19,15 +13,13 @@ String classifyResponseTime(long milliseconds) {
     }
 }
 
-
-// Test isSuccessful()
+// Test isSuccessful
 assert isSuccessful(200)
 assert isSuccessful(201)
 assert !isSuccessful(400)
 assert !isSuccessful(500)
 
-
-// Test classifyResponseTime()
-assert classifyResponseTime(300) == "FAST"
-assert classifyResponseTime(800) == "ACCEPTABLE"
+// Test classifyResponseTime
+assert classifyResponseTime(200) == "FAST"
+assert classifyResponseTime(700) == "ACCEPTABLE"
 assert classifyResponseTime(1500) == "SLOW"

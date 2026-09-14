@@ -1,0 +1,470 @@
+{
+    "organization": {
+        "name": "NextGen Quality Labs",
+        "location": "Ho Chi Minh City",
+        "teams": [
+            {
+                "id": "TEAM-001",
+                "name": "Ruby",
+                "lead": {
+                    "id": "USR-001",
+                    "name": "Alice Nguyen",
+                    "email": "alice@example.com",
+                    "skills": [
+                        "Groovy",
+                        "Katalon",
+                        "API",
+                        "Selenium"
+                    ]
+                },
+                "members": [
+                    {
+                        "id": "USR-002",
+                        "name": "Bob Tran",
+                        "role": "Automation Engineer",
+                        "experienceYears": 4,
+                        "active": true,
+                        "skills": [
+                            "Java",
+                            "Groovy",
+                            "API"
+                        ],
+                        "projects": [
+                            "PRJ-001",
+                            "PRJ-002"
+                        ]
+                    },
+                    {
+                        "id": "USR-003",
+                        "name": "Charlie Le",
+                        "role": "QA Engineer",
+                        "experienceYears": 2,
+                        "active": true,
+                        "skills": [
+                            "Manual Testing",
+                            "SQL"
+                        ],
+                        "projects": [
+                            "PRJ-001"
+                        ]
+                    },
+                    {
+                        "id": "USR-004",
+                        "name": "David Pham",
+                        "role": "Automation Engineer",
+                        "experienceYears": 6,
+                        "active": false,
+                        "skills": [
+                            "Java",
+                            "Selenium",
+                            "Performance"
+                        ],
+                        "projects": []
+                    }
+                ]
+            },
+            {
+                "id": "TEAM-002",
+                "name": "Titan",
+                "lead": {
+                    "id": "USR-005",
+                    "name": "Emma Vo",
+                    "email": "emma@example.com",
+                    "skills": [
+                        "Leadership",
+                        "Groovy",
+                        "Playwright"
+                    ]
+                },
+                "members": [
+                    {
+                        "id": "USR-006",
+                        "name": "Frank Ho",
+                        "role": "Senior Automation Engineer",
+                        "experienceYears": 8,
+                        "active": true,
+                        "skills": [
+                            "Groovy",
+                            "Katalon",
+                            "API",
+                            "Docker"
+                        ],
+                        "projects": [
+                            "PRJ-002",
+                            "PRJ-003"
+                        ]
+                    },
+                    {
+                        "id": "USR-007",
+                        "name": "Grace Bui",
+                        "role": "QA Engineer",
+                        "experienceYears": 3,
+                        "active": true,
+                        "skills": [
+                            "Manual Testing",
+                            "API",
+                            "Postman"
+                        ],
+                        "projects": [
+                            "PRJ-003"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "projects": [
+        {
+            "id": "PRJ-001",
+            "name": "Customer Portal",
+            "status": "ACTIVE",
+            "priority": "HIGH",
+            "budget": 120000,
+            "environments": [
+                {
+                    "name": "QA",
+                    "url": "https://qa.portal.example.com",
+                    "enabled": true
+                },
+                {
+                    "name": "STAGING",
+                    "url": "https://staging.portal.example.com",
+                    "enabled": true
+                },
+                {
+                    "name": "PROD",
+                    "url": "https://portal.example.com",
+                    "enabled": false
+                }
+            ],
+            "testSuites": [
+                {
+                    "id": "TS-001",
+                    "name": "Login",
+                    "type": "UI",
+                    "tags": [
+                        "smoke",
+                        "regression",
+                        "authentication"
+                    ],
+                    "testCases": [
+                        {
+                            "id": "TC-001",
+                            "name": "Login with valid credentials",
+                            "priority": "P1",
+                            "automated": true,
+                            "owner": "USR-002",
+                            "estimatedMinutes": 5,
+                            "steps": [
+                                "Open login page",
+                                "Enter username",
+                                "Enter password",
+                                "Click login",
+                                "Verify dashboard"
+                            ],
+                            "executions": [
+                                {
+                                    "environment": "QA",
+                                    "build": "1.10.0",
+                                    "status": "PASSED",
+                                    "durationSeconds": 12.5,
+                                    "retry": 0,
+                                    "executedBy": "USR-002"
+                                },
+                                {
+                                    "environment": "STAGING",
+                                    "build": "1.10.0",
+                                    "status": "FAILED",
+                                    "durationSeconds": 18.4,
+                                    "retry": 2,
+                                    "executedBy": "USR-006",
+                                    "failure": {
+                                        "type": "TimeoutException",
+                                        "message": "Dashboard did not load",
+                                        "component": "dashboard"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "TC-002",
+                            "name": "Login with invalid password",
+                            "priority": "P1",
+                            "automated": true,
+                            "owner": "USR-002",
+                            "estimatedMinutes": 4,
+                            "steps": [
+                                "Open login page",
+                                "Enter username",
+                                "Enter wrong password",
+                                "Click login",
+                                "Verify error"
+                            ],
+                            "executions": [
+                                {
+                                    "environment": "QA",
+                                    "build": "1.10.0",
+                                    "status": "PASSED",
+                                    "durationSeconds": 8.2,
+                                    "retry": 0,
+                                    "executedBy": "USR-002"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "TC-003",
+                            "name": "Account locked after five failed attempts",
+                            "priority": "P2",
+                            "automated": false,
+                            "owner": "USR-003",
+                            "estimatedMinutes": 12,
+                            "steps": [
+                                "Attempt invalid login five times",
+                                "Verify account is locked",
+                                "Verify warning message"
+                            ],
+                            "executions": []
+                        }
+                    ]
+                },
+                {
+                    "id": "TS-002",
+                    "name": "Customer API",
+                    "type": "API",
+                    "tags": [
+                        "api",
+                        "regression"
+                    ],
+                    "testCases": [
+                        {
+                            "id": "TC-004",
+                            "name": "Get customer by ID",
+                            "priority": "P1",
+                            "automated": true,
+                            "owner": "USR-002",
+                            "estimatedMinutes": 3,
+                            "api": {
+                                "method": "GET",
+                                "endpoint": "/customers/{id}",
+                                "expectedStatus": 200
+                            },
+                            "executions": [
+                                {
+                                    "environment": "QA",
+                                    "build": "1.10.1",
+                                    "status": "PASSED",
+                                    "durationSeconds": 1.4,
+                                    "retry": 0,
+                                    "executedBy": "USR-006"
+                                },
+                                {
+                                    "environment": "STAGING",
+                                    "build": "1.10.1",
+                                    "status": "PASSED",
+                                    "durationSeconds": 1.9,
+                                    "retry": 0,
+                                    "executedBy": "USR-006"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "TC-005",
+                            "name": "Create customer with invalid email",
+                            "priority": "P2",
+                            "automated": true,
+                            "owner": "USR-006",
+                            "estimatedMinutes": 4,
+                            "api": {
+                                "method": "POST",
+                                "endpoint": "/customers",
+                                "expectedStatus": 400
+                            },
+                            "executions": [
+                                {
+                                    "environment": "QA",
+                                    "build": "1.10.1",
+                                    "status": "FAILED",
+                                    "durationSeconds": 2.8,
+                                    "retry": 1,
+                                    "executedBy": "USR-006",
+                                    "failure": {
+                                        "type": "AssertionError",
+                                        "message": "Expected 400 but received 500",
+                                        "component": "customer-service"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "PRJ-002",
+            "name": "Payment Gateway",
+            "status": "ACTIVE",
+            "priority": "CRITICAL",
+            "budget": 250000,
+            "environments": [
+                {
+                    "name": "QA",
+                    "url": "https://qa.payment.example.com",
+                    "enabled": true
+                },
+                {
+                    "name": "CTCERT",
+                    "url": "https://ctcert.payment.example.com",
+                    "enabled": true
+                },
+                {
+                    "name": "CTPROD",
+                    "url": "https://ctprod.payment.example.com",
+                    "enabled": true
+                },
+                {
+                    "name": "PROD",
+                    "url": "https://payment.example.com",
+                    "enabled": true
+                }
+            ],
+            "testSuites": [
+                {
+                    "id": "TS-003",
+                    "name": "Payments",
+                    "type": "API",
+                    "tags": [
+                        "payment",
+                        "critical",
+                        "api"
+                    ],
+                    "testCases": [
+                        {
+                            "id": "TC-006",
+                            "name": "Create successful payment",
+                            "priority": "P1",
+                            "automated": true,
+                            "owner": "USR-006",
+                            "estimatedMinutes": 6,
+                            "api": {
+                                "method": "POST",
+                                "endpoint": "/payments",
+                                "expectedStatus": 201
+                            },
+                            "executions": [
+                                {
+                                    "environment": "QA",
+                                    "build": "3.4.2",
+                                    "status": "PASSED",
+                                    "durationSeconds": 3.2,
+                                    "retry": 0,
+                                    "executedBy": "USR-006"
+                                },
+                                {
+                                    "environment": "CTCERT",
+                                    "build": "3.4.2",
+                                    "status": "PASSED",
+                                    "durationSeconds": 4.8,
+                                    "retry": 0,
+                                    "executedBy": "USR-002"
+                                },
+                                {
+                                    "environment": "CTPROD",
+                                    "build": "3.4.2",
+                                    "status": "FAILED",
+                                    "durationSeconds": 7.5,
+                                    "retry": 3,
+                                    "executedBy": "USR-006",
+                                    "failure": {
+                                        "type": "ServiceUnavailable",
+                                        "message": "Bank connector unavailable",
+                                        "component": "bank-adapter"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "TC-007",
+                            "name": "Reject duplicated transaction",
+                            "priority": "P1",
+                            "automated": true,
+                            "owner": "USR-006",
+                            "estimatedMinutes": 5,
+                            "api": {
+                                "method": "POST",
+                                "endpoint": "/payments",
+                                "expectedStatus": 409
+                            },
+                            "executions": [
+                                {
+                                    "environment": "QA",
+                                    "build": "3.4.2",
+                                    "status": "PASSED",
+                                    "durationSeconds": 2.7,
+                                    "retry": 0,
+                                    "executedBy": "USR-006"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "PRJ-003",
+            "name": "Analytics Dashboard",
+            "status": "MAINTENANCE",
+            "priority": "MEDIUM",
+            "budget": 70000,
+            "environments": [
+                {
+                    "name": "QA",
+                    "url": "https://qa.analytics.example.com",
+                    "enabled": true
+                }
+            ],
+            "testSuites": [
+                {
+                    "id": "TS-004",
+                    "name": "Dashboard UI",
+                    "type": "UI",
+                    "tags": [
+                        "dashboard",
+                        "ui"
+                    ],
+                    "testCases": [
+                        {
+                            "id": "TC-008",
+                            "name": "Display revenue chart",
+                            "priority": "P2",
+                            "automated": false,
+                            "owner": null,
+                            "estimatedMinutes": 8,
+                            "steps": [
+                                "Open dashboard",
+                                "Select date range",
+                                "Verify revenue chart"
+                            ],
+                            "executions": [
+                                {
+                                    "environment": "QA",
+                                    "build": "2.1.0",
+                                    "status": "SKIPPED",
+                                    "durationSeconds": 0,
+                                    "retry": 0,
+                                    "executedBy": null
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "executionSummary": {
+        "totalExecutions": 12,
+        "passed": 8,
+        "failed": 3,
+        "skipped": 1,
+        "averageDurationSeconds": 5.47
+    }
+}

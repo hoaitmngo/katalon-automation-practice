@@ -16,17 +16,13 @@ def failedTests = executions.findAll {
 println("Failed: ${failedTests.size()}")
 
 // 2. Which browser has most failures?
-
 def failuresByBrowser = failedTests.groupBy {
     it.browser
 }
 
-def mostFailedBrowser = failuresByBrowser.max { entry ->
-    entry.value.size()
-}
+def mostFailedBrowser = failuresByBrowser.max { it.value.size() }
 
-println("Browser with most failures: ${mostFailedBrowser.key}")
-println("Number of failures: ${mostFailedBrowser.value.size()}")
+println("Browser with most failures: ${mostFailedBrowser.key} - with ${mostFailedBrowser.value.size()} failures")
 
 // 3. Average execution time
 def totalDuration = executions.sum {
